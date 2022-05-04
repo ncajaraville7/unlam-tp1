@@ -1,0 +1,47 @@
+Confeccionar un programa que permita cargar un listado de personas con los siguientes datos:
+Nombre
+Apellido
+DNI
+Edad
+Localidad donde vive
+Telefono
+
+Requisitos:
+a-El listado de personas debe ser de un total de entre 10 y 20 personas
+Se deberá declarar la estructura necesaria y se le debe pasar por parametro el tamaño del elemento que resguardá el listado de personas (entre 10 y 20 personas en total) validando que el valor de entrada sea entre los limites indicados.
+b-El Sistema debe contar con un menu pre-cargado con las siguientes localidades de las cuales se seleccionará donde vive la persona:
+Haedo
+Ramos Mejia
+San Justo
+Moron
+
+c-El programa debera mostrar un menu con las siguientes opciones:
+Cargar nueva persona con todos los datos de los mismos.
+Listar la totalidad de las personas mostrando los siguientes datos:
+o Nombre + Apellido
+o DNI
+o Telefono
+
+Mostrar la persona mas grande (numero de DNI mas chico)
+
+Listar las personas que vivan en la localidad indicada por parametro.
+oNombre + Apellido
+oDNI
+oEdad
+oTelefono
+
+Buscar una persona por DNI. 
+oSe debe ingresar el DNI por teclado, buscar a la persona dentro del listado de personas.
+oEn caso de encontrar la persona mostrar todos sus datos. 
+oEn caso de no encontrar a la persona se debera informar que no esta cargada dicha persona.
+
+Ordenar las personas por numero de DNI. 
+oDar la opcion de Mostrar / Listar por pantalla de la siguientes formas:
+DNI de Mayor a Menor.
+DNI de Menor a Mayor.
+Datos a mostrar por pantalla de todas las personas cargadas:
+oNombre + Apellido
+oDNI
+
+Desea Salir del programa
+o Este menu solo debe aceptar los valores “S” o “N” caso contrario Volver a preguntar.
