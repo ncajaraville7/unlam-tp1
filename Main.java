@@ -4,15 +4,13 @@ import java.util.Scanner;
 
 public class Main {
 
-	private static Scanner entrada;
-
 	public static void main(String[] args) {
 
 		System.out.println("**********************************");
 		System.out.println("TRABAJO PRACTICO MODULO Nº 1 UNLAM");
 		System.out.println("**********************************");
 
-		entrada = new Scanner(System.in);
+		Scanner entrada = new Scanner(System.in);
 
 		int cantidadPersonas;
 
@@ -47,43 +45,46 @@ public class Main {
 			System.out.println("6 - ORDERNAR LAS PERSONAS POR DNI Y MOSTRARLAS");
 			System.out.println("7 - SALIR");
 			ciclo = entrada.nextInt();
+			clearScanner(entrada);
 
 			switch (ciclo) {
 
 			case 1:
-				// ¿ HAY QUE CARGAR UNA SOLA PERSONA O TODAS LAS PERSONAS QUE INDICAMOS QUE IBAN
-				// A ESTAR EN EL VECTOR ?
-				// VER VALIDACIONES Y  COMO VALIDAR LAS VARIABLES CON NUMEROS
 
 				for (int i = 0; i < cantidadPersonas; i++) {
 					System.out.println("[" + i + "]" + " Ingrese el nombre de la persona numero " + (i + 1));
-					nombre = entrada.next();
+					nombre = entrada.nextLine();
+					clearScanner(entrada);
 
 					while (nombre == "") {
 
 						System.out.println("Error !!! Nombre invalido. Ingrese el nombre nuevamente");
 						nombre = entrada.nextLine();
+						clearScanner(entrada);
 					}
-					
+
 					nombre = nombre.trim();
-					entrada.nextLine();
 
 					System.out.println("[" + i + "]" + " Ingrese el apellido de la persona numero " + (i + 1));
-					apellido = entrada.next();
+					apellido = entrada.nextLine();
+					clearScanner(entrada);
 
 					while (apellido == "") {
 
 						System.out.println("Error !!! Apellido invalido. Ingrese el apellido nuevamente");
 						apellido = entrada.nextLine();
+						clearScanner(entrada);
 					}
-					
+
 					apellido = apellido.trim();
 
 					System.out.println("[" + i + "]" + " Ingrese el dni de la persona numero " + (i + 1));
 					dni = entrada.nextLong();
+					clearScanner(entrada);
 
 					System.out.println("[" + i + "]" + " Ingrese la edad de la persona numero " + (i + 1));
 					edad = entrada.nextInt();
+					clearScanner(entrada);
 
 					do {
 						System.out.println("\n" + "[" + i + "]" + " Ingrese localidad de la persona numero " + (i + 1));
@@ -92,6 +93,7 @@ public class Main {
 						System.out.println("3 - SAN JUSTO");
 						System.out.println("4 - MORON \n");
 						ciclo = entrada.nextInt();
+						clearScanner(entrada);
 
 						switch (ciclo) {
 						case 1:
@@ -113,6 +115,7 @@ public class Main {
 
 					System.out.println("[" + i + "]" + " Ingrese el telefono de la persona numero " + (i + 1));
 					telefono = entrada.nextLong();
+					clearScanner(entrada);
 
 					vectorPersonas[i] = new Persona(nombre, apellido, dni, edad, localidad, telefono);
 				}
@@ -129,8 +132,8 @@ public class Main {
 				} else {
 					for (int i = 0; i < cantidadPersonas; i++) {
 						System.out.println("\n" + "[" + i + "]" + " Persona numero " + (i + 1));
-						System.out.println("Nombre: " + vectorPersonas[i].getNombre());
-						System.out.println("Apellido: " + vectorPersonas[i].getApellido());
+						System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " "
+								+ vectorPersonas[i].getApellido());
 						System.out.println("DNI: " + vectorPersonas[i].getDni());
 						System.out.println("Telefono: " + vectorPersonas[i].getTelefono());
 						System.out.println("\n-----------------------");
@@ -150,12 +153,62 @@ public class Main {
 							auxMayorDni = vectorPersonas[i].getDni();
 						}
 					}
-					System.out.println("El dni de la persona mas grande es: " + auxMayorDni);
+					System.out.println("\nEl dni de la persona mas grande es: " + auxMayorDni);
 				}
 				break;
 
 			case 4:
 				System.out.println("\nMOSTRANDO PERSONAS QUE VIVEN EN LA LOCALIDAD INDICADA");
+
+				do {
+					System.out.println("\nIndique de que localidad son las personas que quiere listar");
+					System.out.println("\n1 - HAEDO");
+					System.out.println("2 - RAMOS MEJIA");
+					System.out.println("3 - SAN JUSTO");
+					System.out.println("4 - MORON \n");
+					ciclo = entrada.nextInt();
+					clearScanner(entrada);
+
+					switch (ciclo) {
+					case 1:
+						localidad = "Haedo";
+						break;
+					case 2:
+						localidad = "Ramos Mejia";
+						break;
+					case 3:
+						localidad = "San Justo";
+						break;
+					case 4:
+						localidad = "Moron";
+						break;
+					default:
+						System.out.println("No ingreso una localidad valida");
+					}
+				} while (ciclo != 1 && ciclo != 2 && ciclo != 3 && ciclo != 4);
+
+				if (vectorPersonas[0] == null) {
+					System.out.println("Error !!! No hay personas cargadas");
+				} else {
+
+					System.out.println("************************");
+					System.out.println("INFO. PERSONAS DE " + localidad.toUpperCase());
+					System.out.println("************************");
+
+					for (int i = 0; i < cantidadPersonas; i++) {
+						if (localidad == vectorPersonas[i].getLocalidad()) {
+							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " "
+									+ vectorPersonas[i].getApellido());
+							System.out.println("DNI: " + vectorPersonas[i].getDni());
+							System.out.println("Telefono: " + vectorPersonas[i].getTelefono());
+							System.out.println("Edad: " + vectorPersonas[i].getEdad());
+							// VER POR QUE AUNQUE ENCUENTRE RESULTADO SE EJECUTA EL ELSE
+						} else {
+							System.out.println("No se encontraron personas en la localidad indicada");
+						}
+					}
+				}
+
 				break;
 			case 5:
 				System.out.println("\nBUSCANDO PERSONA POR DNI");
@@ -172,6 +225,11 @@ public class Main {
 			}
 		} while (ciclo != 7);
 
+	}
+
+	public static void clearScanner(Scanner entrada) {
+		String line = null;
+		while (!(line = entrada.nextLine()).isEmpty());
 	}
 
 }
