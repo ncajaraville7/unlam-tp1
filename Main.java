@@ -1,5 +1,6 @@
 package personas;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -212,6 +213,7 @@ public class Main {
 			case 5:
 				System.out.println("Ingrese el documento de la persona que desea buscar");
 				long dniPersona = entrada.nextLong();
+				clearScanner(entrada);
 
 				if (vectorPersonas[0] == null) {
 					System.out.println("Error !!! No hay personas cargadas");
@@ -234,6 +236,31 @@ public class Main {
 				break;
 			case 6:
 				System.out.println("\nORDENANDO PERSONAS Y MOSTRANDOLAS");
+				
+				do {
+					System.out.println("Como desea ordenar a las personas cargadas");
+					System.out.println("\n1 - MAYOR A MENOR");
+					System.out.println("2 - MENOR A MAYOR");
+					ciclo = entrada.nextInt();
+					clearScanner(entrada);
+
+					switch (ciclo) {
+					case 1:
+						System.out.println("Ordenaste de mayor a menor");
+						
+						
+						break;
+
+					case 2:
+						System.out.println("ordenaste de menor a mayor");
+						break;
+
+					default:
+						System.out.println("entro al default");
+						break;
+					}
+				} while (ciclo != 1 && ciclo != 2);
+
 				break;
 			case 7:
 				System.out.println("\nSALIENDO DEL PROGRAMA");
