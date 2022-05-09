@@ -158,7 +158,6 @@ public class Main {
 				break;
 
 			case 4:
-				System.out.println("\nMOSTRANDO PERSONAS QUE VIVEN EN LA LOCALIDAD INDICADA");
 
 				do {
 					System.out.println("\nIndique de que localidad son las personas que quiere listar");
@@ -211,7 +210,27 @@ public class Main {
 
 				break;
 			case 5:
-				System.out.println("\nBUSCANDO PERSONA POR DNI");
+				System.out.println("Ingrese el documento de la persona que desea buscar");
+				long dniPersona = entrada.nextLong();
+
+				if (vectorPersonas[0] == null) {
+					System.out.println("Error !!! No hay personas cargadas");
+				} else {
+					for (int i = 0; i < cantidadPersonas; i++) {
+						if (dniPersona == vectorPersonas[i].getDni()) {
+							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " "
+									+ vectorPersonas[i].getApellido());
+							System.out.println("DNI: " + vectorPersonas[i].getDni());
+							System.out.println("Telefono: " + vectorPersonas[i].getTelefono());
+							System.out.println("Edad: " + vectorPersonas[i].getEdad());
+							System.out.println("Localidad : " + vectorPersonas[i].getLocalidad());
+							// VER POR QUE AUNQUE ENCUENTRE RESULTADO SE EJECUTA EL ELSE
+						} else {
+							System.out.println("No hay personas cargadas con el dni " + dniPersona);
+						}
+					}
+				}
+
 				break;
 			case 6:
 				System.out.println("\nORDENANDO PERSONAS Y MOSTRANDOLAS");
@@ -229,7 +248,8 @@ public class Main {
 
 	public static void clearScanner(Scanner entrada) {
 		String line = null;
-		while (!(line = entrada.nextLine()).isEmpty());
+		while (!(line = entrada.nextLine()).isEmpty())
+			;
 	}
 
 }
