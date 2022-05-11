@@ -249,9 +249,8 @@ public class Main {
 						System.out.println("ORDENASTE DE MAYOR A MENOR");
 						System.out.println("**************************");
 						
-						for (int i = cantidadPersonas - 1; i > 0; i--) {
-
-							for (int j = 0; j < j - i; j++) {
+						for (int i = 0; i < cantidadPersonas; i++) {
+							for (int j = 0; j < cantidadPersonas - i - 1; j++) {
 								if (vectorPersonas[j].getDni() < vectorPersonas[j + 1].getDni()) {
 									Persona aux = vectorPersonas[j + 1];
 									vectorPersonas[j + 1] = vectorPersonas[j];
@@ -272,8 +271,8 @@ public class Main {
 						System.out.println("ORDENASTE DE MENOR A MAYOR");
 						System.out.println("**************************");
 						
-						for (int i = cantidadPersonas - 1; i > 0; i--) {
-							for (int j = 0; j < j - i; j++) {
+						for (int i = 0; i < cantidadPersonas; i++) {
+							for (int j = 0; j < cantidadPersonas - i - 1; j++) {
 								if (vectorPersonas[j].getDni() > vectorPersonas[j + 1].getDni()) {
 									Persona aux = vectorPersonas[j + 1];
 									vectorPersonas[j + 1] = vectorPersonas[j];
@@ -296,7 +295,17 @@ public class Main {
 
 				break;
 			case 7:
-				System.out.println("\nSALIENDO DEL PROGRAMA");
+				System.out.println("Estas seguro que deseas salir ?");
+				System.out.println("Si es asi escriba 'S', caso contrario 'N'");
+				String salir = entrada.next().toUpperCase();
+				clearScanner(entrada);
+				
+				System.out.println(salir);
+				
+				if(salir == "S") {
+					System.out.println("Cerrando programa");
+				}
+				
 				break;
 			default:
 				System.out.println("\nNo ingresaste una opcion valida");
