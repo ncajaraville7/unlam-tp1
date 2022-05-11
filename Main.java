@@ -235,8 +235,7 @@ public class Main {
 
 				break;
 			case 6:
-				System.out.println("\nORDENANDO PERSONAS Y MOSTRANDOLAS");
-				
+	
 				do {
 					System.out.println("Como desea ordenar a las personas cargadas");
 					System.out.println("\n1 - MAYOR A MENOR");
@@ -246,13 +245,47 @@ public class Main {
 
 					switch (ciclo) {
 					case 1:
-						System.out.println("Ordenaste de mayor a menor");
+						System.out.println("**************************");
+						System.out.println("ORDENASTE DE MAYOR A MENOR");
+						System.out.println("**************************");
 						
-						
+						for (int i = cantidadPersonas - 1; i > 0; i--) {
+
+							for (int j = 0; j < j - i; j++) {
+								if (vectorPersonas[j].getDni() < vectorPersonas[j + 1].getDni()) {
+									Persona aux = vectorPersonas[j + 1];
+									vectorPersonas[j + 1] = vectorPersonas[j];
+									vectorPersonas[j] = aux;
+								}
+							}
+						}
+
+						for (int i = 0; i < vectorPersonas.length; i++) {
+							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " " + vectorPersonas[i].getApellido());
+							System.out.println("Dni :" + vectorPersonas[i].getDni());
+						}
+
 						break;
 
 					case 2:
-						System.out.println("ordenaste de menor a mayor");
+						System.out.println("**************************");
+						System.out.println("ORDENASTE DE MENOR A MAYOR");
+						System.out.println("**************************");
+						
+						for (int i = cantidadPersonas - 1; i > 0; i--) {
+							for (int j = 0; j < j - i; j++) {
+								if (vectorPersonas[j].getDni() > vectorPersonas[j + 1].getDni()) {
+									Persona aux = vectorPersonas[j + 1];
+									vectorPersonas[j + 1] = vectorPersonas[j];
+									vectorPersonas[j] = aux;
+								}
+							}
+						}
+
+						for (int i = 0; i < vectorPersonas.length; i++) {
+							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " " + vectorPersonas[i].getApellido());
+							System.out.println("Dni :" + vectorPersonas[i].getDni());
+						}
 						break;
 
 					default:
