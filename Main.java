@@ -16,14 +16,13 @@ public class Main {
 		int cantidadPersonas;
 
 		System.out.println("Ingresa la cantidad de personas a ingresar. El mismo debe ser entre 10 y 20");
-		// cantidadPersonas = entrada.nextInt();
-		cantidadPersonas = 2;
+		cantidadPersonas = entrada.nextInt();
 
-//		while (cantidadPersonas < 10 || cantidadPersonas > 20) {
-//			System.out.println("Error !!! Debe ingresar un numero entre el 10 y el 20\n");
-//			System.out.println("Ingresa la cantidad de personas a ingresar. El mismo debe ser entre 10 y 20");
-//			cantidadPersonas = entrada.nextInt();
-//		}
+		while (cantidadPersonas < 10 || cantidadPersonas > 20) {
+			System.out.println("Error !!! Debe ingresar un numero entre el 10 y el 20\n");
+			System.out.println("Ingresa la cantidad de personas a ingresar. El mismo debe ser entre 10 y 20");
+			cantidadPersonas = entrada.nextInt();
+		}
 
 		Persona[] vectorPersonas = new Persona[cantidadPersonas];
 
@@ -160,6 +159,8 @@ public class Main {
 
 			case 4:
 
+				boolean personaEncontrada = false;
+
 				do {
 					System.out.println("\nIndique de que localidad son las personas que quiere listar");
 					System.out.println("\n1 - HAEDO");
@@ -202,10 +203,11 @@ public class Main {
 							System.out.println("DNI: " + vectorPersonas[i].getDni());
 							System.out.println("Telefono: " + vectorPersonas[i].getTelefono());
 							System.out.println("Edad: " + vectorPersonas[i].getEdad());
-							// VER POR QUE AUNQUE ENCUENTRE RESULTADO SE EJECUTA EL ELSE
-						} else {
-							System.out.println("No se encontraron personas en la localidad indicada");
+							personaEncontrada = true;
 						}
+					}
+					if (personaEncontrada == false) {
+						System.out.println("No se encontraron personas en la localidad indicada");
 					}
 				}
 
@@ -214,6 +216,8 @@ public class Main {
 				System.out.println("Ingrese el documento de la persona que desea buscar");
 				long dniPersona = entrada.nextLong();
 				clearScanner(entrada);
+
+				personaEncontrada = false;
 
 				if (vectorPersonas[0] == null) {
 					System.out.println("Error !!! No hay personas cargadas");
@@ -226,16 +230,18 @@ public class Main {
 							System.out.println("Telefono: " + vectorPersonas[i].getTelefono());
 							System.out.println("Edad: " + vectorPersonas[i].getEdad());
 							System.out.println("Localidad : " + vectorPersonas[i].getLocalidad());
-							// VER POR QUE AUNQUE ENCUENTRE RESULTADO SE EJECUTA EL ELSE
-						} else {
-							System.out.println("No hay personas cargadas con el dni " + dniPersona);
+							personaEncontrada = true;
 						}
+					}
+
+					if (personaEncontrada == false) {
+						System.out.println("No hay personas cargadas con el dni " + dniPersona);
 					}
 				}
 
 				break;
 			case 6:
-	
+
 				do {
 					System.out.println("Como desea ordenar a las personas cargadas");
 					System.out.println("\n1 - MAYOR A MENOR");
@@ -248,7 +254,7 @@ public class Main {
 						System.out.println("**************************");
 						System.out.println("ORDENASTE DE MAYOR A MENOR");
 						System.out.println("**************************");
-						
+
 						for (int i = 0; i < cantidadPersonas; i++) {
 							for (int j = 0; j < cantidadPersonas - i - 1; j++) {
 								if (vectorPersonas[j].getDni() < vectorPersonas[j + 1].getDni()) {
@@ -260,7 +266,8 @@ public class Main {
 						}
 
 						for (int i = 0; i < vectorPersonas.length; i++) {
-							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " " + vectorPersonas[i].getApellido());
+							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " "
+									+ vectorPersonas[i].getApellido());
 							System.out.println("Dni :" + vectorPersonas[i].getDni());
 						}
 
@@ -270,7 +277,7 @@ public class Main {
 						System.out.println("**************************");
 						System.out.println("ORDENASTE DE MENOR A MAYOR");
 						System.out.println("**************************");
-						
+
 						for (int i = 0; i < cantidadPersonas; i++) {
 							for (int j = 0; j < cantidadPersonas - i - 1; j++) {
 								if (vectorPersonas[j].getDni() > vectorPersonas[j + 1].getDni()) {
@@ -282,7 +289,8 @@ public class Main {
 						}
 
 						for (int i = 0; i < vectorPersonas.length; i++) {
-							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " " + vectorPersonas[i].getApellido());
+							System.out.println("\nNombre y apellido: " + vectorPersonas[i].getNombre() + " "
+									+ vectorPersonas[i].getApellido());
 							System.out.println("Dni :" + vectorPersonas[i].getDni());
 						}
 						break;
@@ -295,17 +303,24 @@ public class Main {
 
 				break;
 			case 7:
-				System.out.println("Estas seguro que deseas salir ?");
-				System.out.println("Si es asi escriba 'S', caso contrario 'N'");
-				String salir = entrada.next().toUpperCase();
-				clearScanner(entrada);
-				
-				System.out.println(salir);
-				
-				if(salir == "S") {
-					System.out.println("Cerrando programa");
-				}
-				
+				boolean letraErronea = true;
+				do {
+					System.out.println("Estas seguro que deseas salir ?");
+					System.out.println("Si es asi escriba 'S', caso contrario 'N'");
+					String salir = entrada.nextLine();
+					clearScanner(entrada);
+
+					if (salir.equalsIgnoreCase("S")) {
+						System.out.println("Cerrando programa");
+						letraErronea = false;
+					} else {
+						if (salir.equalsIgnoreCase("N")) {
+							ciclo = 8;
+							letraErronea = false;
+						}
+					}
+				} while (letraErronea);
+
 				break;
 			default:
 				System.out.println("\nNo ingresaste una opcion valida");
